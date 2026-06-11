@@ -21,8 +21,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup index.ts --format esm --clean",
-    "run": "node index.ts",
+    "build": "tsup",
+    "start": "node --experimental-strip-types index.ts",
     "test": "node --experimental-strip-types --test index.test.ts"
   },
   "dependencies": {

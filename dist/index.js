@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // index.ts
 import { intro, outro } from "@clack/prompts";
 import { text } from "@clack/prompts";
