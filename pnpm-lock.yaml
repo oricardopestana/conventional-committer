@@ -12,7 +12,7 @@ importers:
         specifier: ^1.5.1
         version: 1.5.1
       '@types/node':
-        specifier: 25.9.2
+        specifier: ^25.9.2
         version: 25.9.2
       execa:
         specifier: ^9.6.1

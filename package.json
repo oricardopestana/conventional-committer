@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@clack/prompts": "^1.5.1",
-    "@types/node": "25.9.2",
+    "@types/node": "^25.9.2",
     "execa": "^9.6.1"
   },
   "devDependencies": {
