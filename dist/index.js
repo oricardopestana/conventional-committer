@@ -1,10 +1,7 @@
 #!/usr/bin/env node
 
 // index.ts
-import { intro, outro } from "@clack/prompts";
-import { text } from "@clack/prompts";
-import { confirm } from "@clack/prompts";
-import { autocomplete } from "@clack/prompts";
+import { autocomplete, cancel, intro, isCancel, outro, text, confirm } from "@clack/prompts";
 
 // constants.ts
 var commitTypes = [
@@ -40,11 +37,13 @@ var type = await autocomplete({
   placeholder: "Type to search...",
   options: commitTypes.map((_type) => ({ value: _type.id, label: _type.value, hint: _type.hint ?? "" }))
 });
+checkCancel(type);
 var scope = await text({
   message: "What is the scope of your commit?",
   placeholder: "None",
   initialValue: ""
 });
+checkCancel(scope);
 var message = await text({
   message: "What is the message?",
   placeholder: "",
@@ -53,14 +52,25 @@ var message = await text({
     if ((value == null ? void 0 : value.length) === 0) return `Value is required!`;
   }
 });
+checkCancel(message);
 var hasBreakingChanges = await confirm({
   message: "Does this commit have breaking changes?"
 });
+checkCancel(hasBreakingChanges);
 var commitMessage = buildCommitMessage(String(type), String(scope), String(message), Boolean(hasBreakingChanges));
 var shouldCommit = await confirm({
   message: `Your commit message is:
   ${commitMessage}
   `
 });
-await execa("git", ["commit", "-m", commitMessage]);
+checkCancel(shouldCommit);
+if (shouldCommit) {
+  await execa("git", ["commit", "-m", commitMessage]);
+}
 outro("Committed");
+function checkCancel(value) {
+  if (isCancel(value)) {
+    cancel("Operation cancelled.");
+    process.exit(0);
+  }
+}
