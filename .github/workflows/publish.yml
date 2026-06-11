@@ -18,6 +18,8 @@ jobs:
         with:
           version: latest
       - run: pnpm install --frozen-lockfile
+        env:
+          npm_config_minimum_release_age: 0
       - run: pnpm test
 
   publish:
@@ -36,6 +38,8 @@ jobs:
         with:
           version: latest
       - run: pnpm install --frozen-lockfile
+        env:
+          npm_config_minimum_release_age: 0
 
       - run: npm version patch --no-git-tag-version
 
