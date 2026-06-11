@@ -52,7 +52,7 @@ Or install globally:
 
 ```bash
 npm install -g @oricardopestana/conventional-committer
-node conventional-committer
+conventional-committer
 ```
 
 ## Commit Types
