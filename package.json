@@ -14,12 +14,24 @@
   "author": "Ricardo Pestana",
   "type": "module",
   "main": "index.js",
+  "bin": {
+    "conventional-committer": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "tsup index.ts --format esm --clean",
     "run": "node index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@clack/prompts": "^1.5.1",
     "execa": "^9.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3"
   }
 }
