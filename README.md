@@ -55,6 +55,23 @@ npm install -g @oricardopestana/conventional-committer
 conventional-committer
 ```
 
+### Add an alias (optional)
+
+To save keystrokes, add an alias to your shell configuration file (e.g., `.zshrc`, `.bashrc`, or `.bash_profile`):
+
+```bash
+echo 'alias cc="conventional-committer" >> .zshrc'
+```
+
+Reload your shell configuration and you'll be able to run the tool with just `cc`.
+
+```bash
+source ~/.zshrc
+cc
+```
+
+Choose whatever alias you prefer — `cc`, `gitcc`, `commit`, or anything else.
+
 ## Commit Types
 
 | Type       | Description                        |
