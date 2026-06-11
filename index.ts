@@ -5,6 +5,7 @@ import { autocomplete } from "@clack/prompts";
 import { commitTypes } from "./constants.ts";
 import type { CommitType } from "./types.ts";
 import { execa } from "execa";
+import { buildCommitMessage } from "./build-commit-message.ts";
 
 intro("Conventional Committer");
 
@@ -33,11 +34,7 @@ const hasBreakingChanges = await confirm({
   message: "Does this commit have breaking changes?",
 });
 
-let commitMessage = `${String(type)}`;
-if (scope) commitMessage += `(${String(scope)})`;
-if (hasBreakingChanges) commitMessage += "!";
-commitMessage += ": ";
-commitMessage += String(message);
+const commitMessage = buildCommitMessage(String(type), String(scope), String(message), Boolean(hasBreakingChanges));
 
 const shouldCommit = await confirm({
   message: `Your commit message is:

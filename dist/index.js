@@ -20,6 +20,18 @@ var commitTypes = [
 
 // index.ts
 import { execa } from "execa";
+
+// build-commit-message.ts
+function buildCommitMessage(type2, scope2, message2, hasBreakingChanges2) {
+  let commitMessage2 = type2;
+  if (scope2) commitMessage2 += `(${scope2})`;
+  if (hasBreakingChanges2) commitMessage2 += "!";
+  commitMessage2 += ": ";
+  commitMessage2 += message2;
+  return commitMessage2;
+}
+
+// index.ts
 intro("Conventional Committer");
 var type = await autocomplete({
   message: "What is the type of your commit?",
@@ -42,11 +54,7 @@ var message = await text({
 var hasBreakingChanges = await confirm({
   message: "Does this commit have breaking changes?"
 });
-var commitMessage = `${String(type)}`;
-if (scope) commitMessage += `(${String(scope)})`;
-if (hasBreakingChanges) commitMessage += "!";
-commitMessage += ": ";
-commitMessage += String(message);
+var commitMessage = buildCommitMessage(String(type), String(scope), String(message), Boolean(hasBreakingChanges));
 var shouldCommit = await confirm({
   message: `Your commit message is:
   ${commitMessage}
