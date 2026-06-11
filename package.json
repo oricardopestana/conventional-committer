@@ -23,7 +23,7 @@
   "scripts": {
     "build": "tsup index.ts --format esm --clean",
     "run": "node index.ts",
-    "test": "vitest run"
+    "test": "node --experimental-strip-types --test index.test.ts"
   },
   "dependencies": {
     "@clack/prompts": "^1.5.1",
@@ -32,7 +32,6 @@
   "devDependencies": {
     "@types/node": "^25.9.2",
     "tsup": "^8.5.1",
-    "typescript": "^6.0.3",
-    "vitest": "^4.1.8"
+    "typescript": "^6.0.3"
   }
 }

@@ -1,49 +1,51 @@
-import { describe, it, expect } from "vitest";
+import { describe, it } from "node:test";
+import assert from "node:assert/strict";
 import { buildCommitMessage } from "./build-commit-message.ts";
 
-describe("buildCommitMessage", () => {
-  it("builds a basic commit message with type and message", () => {
-    expect(buildCommitMessage("feat", "", "add user login", false)).toBe("feat: add user login");
+await describe("buildCommitMessage", async () => {
+  await it("builds a basic commit message with type and message", () => {
+    assert.equal(buildCommitMessage("feat", "", "add user login", false), "feat: add user login");
   });
 
-  it("includes scope when provided", () => {
-    expect(buildCommitMessage("feat", "auth", "add user login", false)).toBe("feat(auth): add user login");
+  await it("includes scope when provided", () => {
+    assert.equal(buildCommitMessage("feat", "auth", "add user login", false), "feat(auth): add user login");
   });
 
-  it("appends breaking change indicator when hasBreakingChanges is true", () => {
-    expect(buildCommitMessage("feat", "", "rewrite API", true)).toBe("feat!: rewrite API");
+  await it("appends breaking change indicator when hasBreakingChanges is true", () => {
+    assert.equal(buildCommitMessage("feat", "", "rewrite API", true), "feat!: rewrite API");
   });
 
-  it("supports scope and breaking changes together", () => {
-    expect(buildCommitMessage("feat", "api", "rewrite endpoints", true)).toBe("feat(api)!: rewrite endpoints");
+  await it("supports scope and breaking changes together", () => {
+    assert.equal(buildCommitMessage("feat", "api", "rewrite endpoints", true), "feat(api)!: rewrite endpoints");
   });
 
-  it("handles fix type", () => {
-    expect(buildCommitMessage("fix", "", "null pointer", false)).toBe("fix: null pointer");
+  await it("handles fix type", () => {
+    assert.equal(buildCommitMessage("fix", "", "null pointer", false), "fix: null pointer");
   });
 
-  it("handles refactor type with scope and breaking changes", () => {
-    expect(buildCommitMessage("refactor", "core", "extract module", true)).toBe("refactor(core)!: extract module");
+  await it("handles refactor type with scope and breaking changes", () => {
+    assert.equal(buildCommitMessage("refactor", "core", "extract module", true), "refactor(core)!: extract module");
   });
 
-  it("handles docs type", () => {
-    expect(buildCommitMessage("docs", "readme", "update install guide", false)).toBe(
+  await it("handles docs type", () => {
+    assert.equal(
+      buildCommitMessage("docs", "readme", "update install guide", false),
       "docs(readme): update install guide",
     );
   });
 
-  it("handles chore type with breaking changes", () => {
-    expect(buildCommitMessage("chore", "", "drop Node 16", true)).toBe("chore!: drop Node 16");
+  await it("handles chore type with breaking changes", () => {
+    assert.equal(buildCommitMessage("chore", "", "drop Node 16", true), "chore!: drop Node 16");
   });
 
-  it("handles empty message gracefully", () => {
-    expect(buildCommitMessage("feat", "", "", false)).toBe("feat: ");
+  await it("handles empty message gracefully", () => {
+    assert.equal(buildCommitMessage("feat", "", "", false), "feat: ");
   });
 
-  it("handles all conventional commit types", () => {
+  await it("handles all conventional commit types", () => {
     const types = ["feat", "fix", "build", "chore", "ci", "docs", "style", "refactor", "perf", "test"];
     for (const type of types) {
-      expect(buildCommitMessage(type, "", "change", false)).toBe(`${type}: change`);
+      assert.equal(buildCommitMessage(type, "", "change", false), `${type}: change`);
     }
   });
 });
