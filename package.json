@@ -1,6 +1,6 @@
 {
   "name": "@oricardopestana/conventional-committer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI tool to help write better commit messages",
   "homepage": "https://github.com/oricardopestana/conventional-committer#readme",
   "bugs": {
