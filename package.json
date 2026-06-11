@@ -1,0 +1,24 @@
+{
+  "name": "conventional-committer",
+  "version": "1.0.0",
+  "description": "CLI tool to help write better commit messages",
+  "homepage": "https://github.com/oricardopestana/conventional-committer#readme",
+  "bugs": {
+    "url": "https://github.com/oricardopestana/conventional-committer/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oricardopestana/conventional-committer.git"
+  },
+  "license": "MIT",
+  "author": "Ricardo Pestana",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.5.1",
+    "execa": "^9.6.1"
+  }
+}
