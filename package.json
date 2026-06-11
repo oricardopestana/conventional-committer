@@ -1,5 +1,5 @@
 {
-  "name": "conventional-committer",
+  "name": "@oricardopestana/conventional-committer",
   "version": "1.0.0",
   "description": "CLI tool to help write better commit messages",
   "homepage": "https://github.com/oricardopestana/conventional-committer#readme",
@@ -15,6 +15,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "run": "node index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
