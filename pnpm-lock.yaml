@@ -16,7 +16,7 @@ importers:
         version: 9.6.1
     devDependencies:
       '@types/node':
-        specifier: ^25.9.3
+        specifier: ^25.9.2
         version: 25.9.3
       tsup:
         specifier: ^8.5.1
